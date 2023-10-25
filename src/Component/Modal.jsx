@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Modal = () => {
+export const Modal = (Modal) => {
   return (
     <div>Modal</div>
   )

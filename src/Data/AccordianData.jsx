@@ -1,6 +1,6 @@
 import Form from "../Component/Form";
 
-const AccordianData = [
+const [AccordianData] = [
     {
         id: 1,
         title: "User Information", //key:value.
@@ -16,6 +16,6 @@ const AccordianData = [
       title: "Final Step",
       content: "This is the content of section 3"
   }
-]
+];
 
 export default AccordianData;
