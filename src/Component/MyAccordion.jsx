@@ -49,7 +49,7 @@ const MyAccordion = () => {
     const onClickOpenModal = () => {    //Modal open on click data button
         setIsOpen(true);
     }
-    console.log(isOpen)
+    // console.log(isOpen)
 
     const onClickReset = () => {    //Reset entire content on clicking reset button
         setShowThird(false);
@@ -58,6 +58,14 @@ const MyAccordion = () => {
         setEnable(false);
         setShowFirst(false);
     }
+
+    const onHideModal = () => {
+        if (isOpen) {
+            setIsOpen(false);
+        }
+        console.log(isOpen)
+
+      }
 
   return (
     <React.Fragment>
@@ -84,7 +92,7 @@ const MyAccordion = () => {
                 </ul>
                 <div hidden={isOpen ? false : true} >
 
-            <Modal />
+            <Modal onHideModal={onHideModal}/>
 
                 </div>
     </div>
