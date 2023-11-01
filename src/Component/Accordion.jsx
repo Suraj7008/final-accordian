@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {useState} from 'react'
 import Form from './Form';
-import { Modal } from './Modal';
+import Modal from './Modal';
 
-const MyAccordion = () => {
+const MyAccordion = (focusedElement) => {
     const [showFirst, setShowFirst] = useState(false); //First accordion show/hide 
     const [showSecond, setShowSecond] = useState(false); //Second accordion show/hide
     const [showThird, setShowThird] = useState(false); //Third accordion show/hide
@@ -41,14 +41,14 @@ const MyAccordion = () => {
 
         if (index === 2) {  //Third accordion
             setEnable(true);
-            setShowThird(true)
+            setShowThird(true);
             setShowSecond(false);
         }
     }
 
     const onClickOpenModal = () => {    //Modal open on click data button
-        setIsOpen(true);
-    }
+            setIsOpen(true);
+    };
 
     const onClickReset = () => {    //Reset entire content on clicking reset button
         setShowThird(false);
@@ -61,11 +61,7 @@ const MyAccordion = () => {
     const onHideModal = () => {
         if (isOpen) {
             setIsOpen(false);
-        }
-        if (KeyboardEvent === 27) {
-            setIsOpen(true);
-        }
-      }
+        }}
 
   return (
     <React.Fragment>
@@ -93,6 +89,7 @@ const MyAccordion = () => {
                 <div hidden={isOpen ? false : true} >
 
             <Modal onHideModal={onHideModal}/>
+
 
                 </div>
     </div>
