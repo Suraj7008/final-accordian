@@ -89,6 +89,7 @@ const MyAccordion = (focusedElement) => {
                 <div hidden={isOpen ? false : true} >
 
             <Modal onHideModal={onHideModal}/>
+            {/* {console.log(isOpen)} */}
 
 
                 </div>
