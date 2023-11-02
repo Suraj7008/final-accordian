@@ -39,9 +39,9 @@ if(e.key === "Tab") {
 return (
     <React.Fragment>
       <div className="modal-wrapper" />
-        <div ref={modalElement} role='dialog' className="modal-container" onKeyDown={(e) => onKeyDown(e)}>
+        <div ref={modalElement} role='dialog' aria-label='Additional Personal Information' aria-modal="true" className="modal-container" onKeyDown={(e) => onKeyDown(e)}>
 
-          <button onClick={() => onHideModal()}>X</button>
+          <button onClick={() => onHideModal()} aria-label='Close'>X</button>
     
           <div >
             <label id='email'>Email id: </label>
