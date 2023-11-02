@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import {useState} from 'react'
 import Form from './Form';
 import Modal from './Modal';
@@ -62,6 +62,17 @@ const MyAccordion = (focusedElement) => {
         if (isOpen) {
             setIsOpen(false);
         }}
+        
+        const accordionFocus = useRef("");
+        useEffect(() => {
+            accordionFocus.current.focus();
+
+        }, [showSecond]);
+
+        const thirdAccordionFocus = useRef("");
+        useEffect(() => {
+            thirdAccordionFocus.current.focus();
+        }, [showThird]);
 
   return (
     <React.Fragment>
@@ -77,7 +88,7 @@ const MyAccordion = (focusedElement) => {
     </div>
 
     <div>
-        <button onClick={() => handleClick(1)} aria-expanded={expanded} disabled = {showSecond === false && enable === false ? true : false}>Additional Information</button>{/* Second accordion */}
+        <button onClick={() => handleClick(1)} aria-expanded={expanded} disabled = {showSecond === false && enable === false ? true : false} ref={accordionFocus}>Additional Information</button>{/* Second accordion */}
         {/* Additional Information */}
             <h2 hidden={showSecond ? false : true}>Additional Details</h2>
                 <p hidden={showSecond ? false : true}>Click on submit after filling additional data!</p>
@@ -89,14 +100,12 @@ const MyAccordion = (focusedElement) => {
                 <div hidden={isOpen ? false : true} >
 
             <Modal onHideModal={onHideModal}/>
-            {/* {console.log(isOpen)} */}
-
 
                 </div>
     </div>
 
     <div>
-        <button onClick={() => handleClick(2)} aria-expanded={expanded} disabled = {showThird === false && newEnable === false ? true : false}>Final Step</button>{/* Third accordion */}
+        <button onClick={() => handleClick(2)} aria-expanded={expanded} disabled = {showThird === false && newEnable === false ? true : false} ref={thirdAccordionFocus} >Final Step</button>{/* Third accordion */}
         {/* Final Step*/}
             <h3 hidden={showThird ? false : true}>Congrats!</h3>
             <p hidden={showThird ? false : true}>You are done now!</p>
