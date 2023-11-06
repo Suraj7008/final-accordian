@@ -1,13 +1,30 @@
-import React, { useEffect, useRef }  from 'react'
+import React, { useEffect, useRef, useState }  from 'react'
 import "./Modal"
 
 const Modal = ({onHideModal}) => {
   const modalElement = useRef();
+  const [email, setEmail] = useState('');
+  const [isShow, setIsShow] = useState(true);
   
   useEffect(() => {
     const addedElement = modalElement.current.querySelectorAll('input, button');
     addedElement[0].focus();
-  })
+  }, []);
+
+  const handleInputChange = (e) => {
+    setEmail(e.target.value);
+};
+const onSubmit = () => {
+  if (email.trim() === '') {
+      setIsShow(false);
+      console.log('Please fill in the email field');
+  } else {
+      setIsShow(true);
+      console.log('Form submitted:', email);
+      onHideModal();
+  }
+};
+
   
   const onKeyDown = (e) => {
     if (e.key === "Escape") {
@@ -43,12 +60,20 @@ return (
 
           <button onClick={() => onHideModal()} aria-label='Close'>X</button>
     
-          <div >
+          <div id='validation'>
             <label id='email'>Email id: </label>
-            <input autoComplete='off' aria-labelledby='email' placeholder='Enter you email id' required />
+            <input
+                        value={email}
+                        onChange={handleInputChange}
+                        autoComplete="off"
+                        aria-labelledby="email"
+                        placeholder="Enter your email id"
+                        required
+                    />
+            <span hidden={isShow}  style={{ color: 'red' }}>Please fill email field</span>
           </div>
           <div>
-            <button onClick={() => onHideModal()}>Submit</button>
+            <button onClick={onSubmit}>Submit</button>
           </div>
         </div>
     </React.Fragment>
