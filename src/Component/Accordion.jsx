@@ -33,7 +33,6 @@ const MyAccordion = () => {
 
     const onClickSubmit = (index) => {  // Form submit button
         if (index === 1) {  // Second accordion
-            console.log("here")
             setShowSecond(true);
             setShowFirst(false);
         }
@@ -57,20 +56,20 @@ const MyAccordion = () => {
         setShowFirst(false);
     }
 
-    const onHideModal = () => {
+    const onHideModal = () => { //Modal open/close
         if (isOpen) {
             setIsOpen(false);
         }
     }
 
-    const accordionFocus = useRef(null);
+    const accordionFocus = useRef(null);    //First accordion close and focus shift to second accordion
     useEffect(() => {
         if (showSecond) {
             accordionFocus.current.focus();
         }
     }, [showSecond]);
 
-    const thirdAccordionFocus = useRef(null);
+    const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
     useEffect(() => {
         if (showThird) {
             thirdAccordionFocus.current.focus();
@@ -85,7 +84,7 @@ const MyAccordion = () => {
                 <h2 hidden={!showFirst}>Personal Details</h2>
 
                 <div hidden={!showFirst}>
-                    <Form onClickSubmit={onClickSubmit} index={1} />
+                    <Form onClickSubmit={onClickSubmit} index={1} />    {/*onclicksubmit perform on submit button and opens second accordion by index=1*/}
                 </div>
             </div>
 

@@ -17,7 +17,6 @@ const Modal = ({onHideModal}) => {
 const onSubmit = () => {
   if (email.trim() === '') {
       setIsShow(false);
-      // console.log('Please fill in the email field');
   } else {
       setIsShow(true);
       console.log('Form submitted:', email);
