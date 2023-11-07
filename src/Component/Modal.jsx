@@ -44,7 +44,7 @@ if(e.key === "Tab") {
         lastElement.focus();
         e.preventDefault();
     } 
-  }else {
+  } else  {
       if(document.activeElement === lastElement) {
         firstElement.focus();
         e.preventDefault();

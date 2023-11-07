@@ -36,7 +36,7 @@ const Form = ({onClickSubmit, index}) => {
   }
  
   return (
-    <form onSubmit={onSubmit}>
+    <form >
 
     <div>
       <label id='fname'>First Name: </label>
@@ -50,7 +50,7 @@ const Form = ({onClickSubmit, index}) => {
       <span hidden={!showlastName} style={{ color: 'red' }}>Please fill last name field</span>
     </div>
     <br />
-    <button type='submit'>Submit</button>
+    <button type='submit'onClick={onSubmit}>Submit</button>
     
     </form>
   )
