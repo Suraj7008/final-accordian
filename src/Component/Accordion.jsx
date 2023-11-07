@@ -33,6 +33,7 @@ const MyAccordion = () => {
 
     const onClickSubmit = (index) => {  // Form submit button
         if (index === 1) {  // Second accordion
+            console.log("here")
             setShowSecond(true);
             setShowFirst(false);
         }
@@ -84,7 +85,7 @@ const MyAccordion = () => {
                 <h2 hidden={!showFirst}>Personal Details</h2>
 
                 <div hidden={!showFirst}>
-                    <Form onClickSubmit={onClickSubmit} />
+                    <Form onClickSubmit={onClickSubmit} index={1} />
                 </div>
             </div>
 
