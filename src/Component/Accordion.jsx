@@ -56,9 +56,11 @@ const MyAccordion = () => {
         setShowFirst(false);
     }
 
+    const hideModal = useRef(null)
     const onHideModal = () => { //Modal open/close
         if (isOpen) {
             setIsOpen(false);
+            hideModal.current.focus();
         }
     }
 
@@ -96,7 +98,7 @@ const MyAccordion = () => {
 
                 <ul>
                     <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
-                    <button hidden={!showSecond} onClick={onClickOpenModal}>Data</button>
+                    <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button>
                 </ul>
                 <div hidden={!isOpen}>
                     <Modal onHideModal={onHideModal} />

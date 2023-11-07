@@ -9,7 +9,7 @@ const Modal = ({onHideModal}) => {
   useEffect(() => {
     const addedElement = modalElement.current.querySelectorAll('input, button');
     addedElement[0].focus();
-  }, []);
+  }, [onHideModal]);
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
@@ -19,7 +19,6 @@ const onSubmit = () => {
       setIsShow(false);
   } else {
       setIsShow(true);
-      console.log('Form submitted:', email);
       onHideModal();
   }
 };
@@ -69,7 +68,7 @@ return (
                         placeholder="Enter your email id"
                         required
                     />
-            <span hidden={isShow}  style={{ color: 'red' }}>Please fill email field</span>
+            <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field</span>
           </div>
           <div>
             <button onClick={onSubmit}>Submit</button>
