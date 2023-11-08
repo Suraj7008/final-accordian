@@ -65,20 +65,18 @@ const MyAccordion = () => {
     };
 
     const accordionFocus = useRef(null);    //First accordion close and focus shift to second accordion
+    const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
+    const reset = useRef(null);
         useEffect(() => {
             if (showSecond) {
                 accordionFocus.current.focus();
-            }
-        }, [showSecond]);
-
-    const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
-        useEffect(() => {
+            };
             if (showThird) {
                 thirdAccordionFocus.current.focus();
-            }
-        }, [showThird]);
+            };
+            
+        },[showSecond,showThird]);
 
-    const reset = useRef(null);
         useEffect(() => {
             if(!showThird && !newEnable) {
                 reset.current.focus();
