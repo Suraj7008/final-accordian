@@ -22,7 +22,7 @@ const Form = ({onClickSubmit, index}) => {
     } else {
       setShowFirstName(false);
     };
-    
+
     if(lastName.trim() === '') {  //Condition to check last name input field is empty or not
       setShowLastName(true);
     } else {
@@ -32,7 +32,7 @@ const Form = ({onClickSubmit, index}) => {
       onClickSubmit(index);
   }
   }
- 
+
   return (
     <form>
 
@@ -49,7 +49,7 @@ const Form = ({onClickSubmit, index}) => {
     </div>
     <br />
     <button type='submit'onClick={onSubmit}>Submit</button>
-    
+
     </form>
   )
 }

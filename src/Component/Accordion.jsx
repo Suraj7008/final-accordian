@@ -96,10 +96,10 @@ const MyAccordion = () => {
                 <h2 hidden={!showSecond}>Additional Details</h2>
                 <p hidden={!showSecond}>Click on submit after filling additional data!</p>
 
-                <ul>
-                    <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
-                    <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button>
-                </ul>
+                    <ul>
+                        <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
+                        <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button>
+                    </ul>
                 <div hidden={!isOpen}>
                     <Modal onHideModal={onHideModal} />
                 </div>
