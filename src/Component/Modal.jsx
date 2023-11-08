@@ -13,7 +13,7 @@ const Modal = ({onHideModal}) => {
 
   const handleInputChange = (e) => {
     setEmail(e.target.value);
-};
+  };
 
   const onSubmit = () => {
     if (email.trim() === '') {

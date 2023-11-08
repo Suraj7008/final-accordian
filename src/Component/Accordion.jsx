@@ -29,7 +29,7 @@ const MyAccordion = () => {
             setExpanded(!expanded);
             setNewEnable(true);
         }
-    }
+    };
 
     const onClickSubmit = (index) => {  // Form submit button
         if (index === 1) {  // Second accordion
@@ -42,7 +42,7 @@ const MyAccordion = () => {
             setShowThird(true);
             setShowSecond(false);
         }
-    }
+    };
 
     const onClickOpenModal = () => {    // Modal open on click data button
         setIsOpen(true);
@@ -54,29 +54,29 @@ const MyAccordion = () => {
         setShowSecond(false);
         setEnable(false);
         setShowFirst(false);
-    }
+    };
 
-    const hideModal = useRef(null)
+    const hideModal = useRef(null);
     const onHideModal = () => { //Modal open/close
         if (isOpen) {
             setIsOpen(false);
             hideModal.current.focus();
         }
-    }
+    };
 
     const accordionFocus = useRef(null);    //First accordion close and focus shift to second accordion
-    useEffect(() => {
-        if (showSecond) {
-            accordionFocus.current.focus();
-        }
-    }, [showSecond]);
+        useEffect(() => {
+            if (showSecond) {
+                accordionFocus.current.focus();
+            }
+        }, [showSecond]);
 
     const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
-    useEffect(() => {
-        if (showThird) {
-            thirdAccordionFocus.current.focus();
-        }
-    }, [showThird]);
+        useEffect(() => {
+            if (showThird) {
+                thirdAccordionFocus.current.focus();
+            }
+        }, [showThird]);
 
     return (
         <React.Fragment>

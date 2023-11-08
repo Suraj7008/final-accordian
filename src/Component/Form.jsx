@@ -28,9 +28,10 @@ const Form = ({onClickSubmit, index}) => {
     } else {
       setShowLastName(false);
     };
+    
     if (firstName.trim() !== '' && lastName.trim() !== '') {  //Condition to check both input field is not empty.
       onClickSubmit(index);
-  }
+    }
   }
 
   return (
