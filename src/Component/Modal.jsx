@@ -41,15 +41,15 @@ const Modal = ({onHideModal}) => {
             if(document.activeElement === firstElement){
             lastElement.focus();
             e.preventDefault();
-        } 
+        };
       } else  {
           if(document.activeElement === lastElement) {
             firstElement.focus();
             e.preventDefault();
-            }
-          }
-         }
-    }
+            };
+          };
+         };
+    };
   
 return (
     <React.Fragment>
@@ -70,12 +70,11 @@ return (
                     />
             <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field</span>
           </div>
-
           <div>
             <button onClick={onSubmit}>Submit</button>
           </div>
         </div>
     </React.Fragment>
-  )
+  );
 };
 export default Modal;

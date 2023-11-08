@@ -28,31 +28,30 @@ const Form = ({onClickSubmit, index}) => {
     } else {
       setShowLastName(false);
     };
-    
+
     if (firstName.trim() !== '' && lastName.trim() !== '') {  //Condition to check both input field is not empty.
       onClickSubmit(index);
-    }
-  }
+    };
+  };
 
   return (
     <form>
 
-    <div>
-      <label id='fname'>First Name: </label>
-      <input value={firstName} onChange={handleFirstNameChange} autoComplete='given-name' type='text' aria-labelledby='fname' name='first_name' placeholder='Enter your first name' aria-required = "true" required/>
-      <span role='alert' hidden={!showFirstName} style={{ color: 'red' }}>Please fill first name field</span>  {/* Error Message */}
-    </div>
+      <div>
+        <label id='fname'>First Name: </label>
+        <input value={firstName} onChange={handleFirstNameChange} autoComplete='given-name' type='text' aria-labelledby='fname' name='first_name' placeholder='Enter your first name' aria-required = "true" required/>
+        <span role='alert' hidden={!showFirstName} style={{ color: 'red' }}>Please fill first name field</span>  {/* Error Message */}
+      </div>
 
-    <div>
-      <label id='lname'>Last Name: </label>
-      <input value={lastName} onChange={handleLastNameChange} autoComplete='family-name' type='text' aria-labelledby='lname' name='last_name' placeholder='Enter your last name' aria-required = "true" required/>
-      <span role='alert' hidden={!showlastName} style={{ color: 'red' }}>Please fill last name field</span>  {/* Error Message */}
-    </div>
-    <br />
-    <button type='submit'onClick={onSubmit}>Submit</button>
+      <div>
+        <label id='lname'>Last Name: </label>
+        <input value={lastName} onChange={handleLastNameChange} autoComplete='family-name' type='text' aria-labelledby='lname' name='last_name' placeholder='Enter your last name' aria-required = "true" required/>
+        <span role='alert' hidden={!showlastName} style={{ color: 'red' }}>Please fill last name field</span>  {/* Error Message */}
+      </div>
+        <button type='submit'onClick={onSubmit}>Submit</button>
 
     </form>
-  )
-}
+  );
+};
 
 export default Form;

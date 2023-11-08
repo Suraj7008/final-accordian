@@ -78,10 +78,17 @@ const MyAccordion = () => {
             }
         }, [showThird]);
 
+    const reset = useRef(null);
+        useEffect(() => {
+            if(!showThird && !newEnable) {
+                reset.current.focus();
+            }
+        }, [showThird,newEnable])
+
     return (
         <React.Fragment>
             <div>
-                <button onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button> {/* First accordion */}
+                <button ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button> {/* First accordion */}
                 {/* User Information content */}
                 <h2 hidden={!showFirst}>Personal Details</h2>
 
@@ -97,8 +104,8 @@ const MyAccordion = () => {
                 <p hidden={!showSecond}>Click on submit after filling additional data!</p>
 
                     <ul>
-                        <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
-                        <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button>
+                        <li><button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button></li>
+                        <li><button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button></li>
                     </ul>
                 <div hidden={!isOpen}>
                     <Modal onHideModal={onHideModal} />
@@ -114,6 +121,6 @@ const MyAccordion = () => {
             </div>
         </React.Fragment>
     );
-}
+};
 
 export default MyAccordion;
