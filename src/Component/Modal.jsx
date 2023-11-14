@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState }  from 'react'
 import "./Modal"
 
 const Modal = ({onHideModal}) => {
-  const modalElement = useRef();
+  const modalElement = useRef(null);
+  const emailError = useRef(null);
   const [email, setEmail] = useState('');
   const [isShow, setIsShow] = useState(true);
 
@@ -18,11 +19,19 @@ const Modal = ({onHideModal}) => {
   const onSubmit = () => {
     if (email.trim() === '') {
         setIsShow(false);
+        emailError.current.focus();  //Error focus
+
     } else {
         setIsShow(true);
         onHideModal();
     }
   };
+
+  const emailInput = () => {
+    if(email.trim() === '') {
+      setIsShow(false);
+    }
+  }
 
   const onKeyDown = (e) => {
     if (e.key === "Escape") {
@@ -61,8 +70,10 @@ return (
           <div id='validation'>
             <label id='email'>Email id: </label>
             <input
+                        ref={emailError}
                         value={email}
                         onChange={handleInputChange}
+                        onBlur={emailInput}
                         autoComplete="off"
                         aria-labelledby="email"
                         placeholder="Enter your email id"
