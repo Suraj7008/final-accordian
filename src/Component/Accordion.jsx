@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Form from './Form';
 import Modal from './Modal';
+// import './Style/Accordionstyle.css';
 
 const MyAccordion = () => {
     const [showFirst, setShowFirst] = useState(false); // First accordion show/hide 
@@ -65,18 +66,20 @@ const MyAccordion = () => {
     };
 
     const accordionFocus = useRef(null);    //First accordion close and focus shift to second accordion
+    useEffect(() => {
+        if (showSecond) {
+            accordionFocus.current.focus();
+        };
+    },[showSecond]);
+    
     const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
+    useEffect(() => {
+        if (showThird) {
+            thirdAccordionFocus.current.focus();
+        };
+    },[showThird]);
+    
     const reset = useRef(null);
-        useEffect(() => {
-            if (showSecond) {
-                accordionFocus.current.focus();
-            };
-            if (showThird) {
-                thirdAccordionFocus.current.focus();
-            };
-            
-        },[showSecond,showThird]);
-
         useEffect(() => {
             if(!showThird && !newEnable) {
                 reset.current.focus();
@@ -86,17 +89,20 @@ const MyAccordion = () => {
     return (
         <React.Fragment>
             <div>
-                <button ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button> {/* First accordion */}
+                <button className='accordianButton' ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button> {/* First accordion */}
                 {/* User Information content */}
+                <div className='main-content'>
+
                 <h2 hidden={!showFirst}>Personal Details</h2>
 
                 <div hidden={!showFirst}>
                     <Form onClickSubmit={onClickSubmit} index={1} />    {/*onclicksubmit perform on submit button and opens second accordion by index=1*/}
                 </div>
+                </div>
             </div>
 
             <div>
-                <button onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button>{/* Second accordion */}
+                <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button>{/* Second accordion */}
                 {/* Additional Information */}
                 <h2 hidden={!showSecond}>Additional Details</h2>
                 <p hidden={!showSecond}>Click on submit after filling additional data!</p>
@@ -111,7 +117,7 @@ const MyAccordion = () => {
             </div>
 
             <div>
-                <button onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>{/* Third accordion */}
+                <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>{/* Third accordion */}
                 {/* Final Step*/}
                 <h3 hidden={!showThird}>Congrats!</h3>
                 <p hidden={!showThird}>You are done now!</p>

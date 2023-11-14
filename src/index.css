@@ -33,6 +33,21 @@ code {
 }
 .modal-container {
   position: fixed;
- 
-
 }
+
+/* .accordianButton  {
+  background-color: #d7d6d6;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  text-align: left;
+}
+
+#root > div > div:nth-child(1) > div {
+  background-color: #b6b6b6;
+  width: 500px;
+  height: 150px;
+  text-align: center;
+  position: relative;
+  
+} */
