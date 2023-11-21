@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState }  from 'react'
-import "./Modal"
+import React, { useEffect, useRef, useState }  from 'react';
+import "./Modal";
+import { ModalInModal } from './ModalInModal';
 
 const Modal = ({onHideModal}) => {
   const modalElement = useRef(null);
   const emailError = useRef(null);
   const [email, setEmail] = useState('');
   const [isShow, setIsShow] = useState(true);
-  const [emailErrorMSG, setEmailErrorMSG] =useState(true);
+  const [emailErrorMSG, setEmailErrorMSG] = useState(true);
+  const [showModal, setShowModal] = useState(true);
 
   const emailValid= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   
@@ -83,6 +85,10 @@ const Modal = ({onHideModal}) => {
           };
          };
     };
+
+    const openNewModal = () => {
+      setShowModal(!showModal)
+    }
   
 return (
     <React.Fragment>
@@ -108,7 +114,11 @@ return (
           </div>
           <div>
             <button onClick={onSubmit}>Submit</button>
-            <li><button>Data</button></li>
+            <button onClick={openNewModal}>Data</button>
+          </div>
+
+          <div hidden={showModal}>
+            <ModalInModal />
           </div>
         </div>
     </React.Fragment>
