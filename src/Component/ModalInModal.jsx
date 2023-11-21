@@ -83,7 +83,6 @@ return (
           </div>
           <div>
             <button onClick={onSubmit}>Submit</button>
-            <li><button>Data</button></li>
           </div>
         </div>
     </React.Fragment>
