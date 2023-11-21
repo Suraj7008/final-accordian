@@ -6,6 +6,10 @@ const Modal = ({onHideModal}) => {
   const emailError = useRef(null);
   const [email, setEmail] = useState('');
   const [isShow, setIsShow] = useState(true);
+  const [emailErrorMSG, setEmailErrorMSG] =useState(true);
+
+  const emailValid= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  
 
   useEffect(() => {
     const addedElement = modalElement.current.querySelectorAll('input, button');
@@ -22,16 +26,36 @@ const Modal = ({onHideModal}) => {
         emailError.current.focus();  //Error focus
 
     } else {
-        setIsShow(true);
-        onHideModal();
-    }
+      if (!emailValid.test(email)) {
+        setEmailErrorMSG(false);
+      } else {
+        setEmailErrorMSG(true);
+        // console.log(emailError);    
+      };
+      setIsShow(true);
+  }
+  if (email.trim() !== '' && emailValid.test(email)) {
+    onHideModal();
+  }
   };
 
   const emailInput = () => {
-    if(email.trim() === '') {
+    if (email.trim() === "") {
       setIsShow(false);
-    }
+      setEmailErrorMSG(true);
   }
+  else {
+      if (!emailValid.test(email)) {
+        setEmailErrorMSG(false);
+      } else {
+        setEmailErrorMSG(true);
+        console.log(emailError);    
+      };
+      setIsShow(true);
+  }
+  }
+
+    
 
   const onKeyDown = (e) => {
     if (e.key === "Escape") {
@@ -79,7 +103,8 @@ return (
                         placeholder="Enter your email id"
                         required
                     />
-            <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field</span>
+            <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field.</span>
+            <span hidden={emailErrorMSG} role='alert' style={{ color: 'red' }}>Please enter valid Email.</span>
           </div>
           <div>
             <button onClick={onSubmit}>Submit</button>
