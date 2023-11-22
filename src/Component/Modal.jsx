@@ -8,7 +8,7 @@ const Modal = ({onHideModal}) => {
   const [email, setEmail] = useState('');
   const [isShow, setIsShow] = useState(true);
   const [emailErrorMSG, setEmailErrorMSG] = useState(true);
-  const [showModal, setShowModal] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const emailValid= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   
@@ -26,20 +26,18 @@ const Modal = ({onHideModal}) => {
     if (email.trim() === '') {
         setIsShow(false);
         emailError.current.focus();  //Error focus
-
     } else {
       if (!emailValid.test(email)) {
         setEmailErrorMSG(false);
       } else {
-        setEmailErrorMSG(true);
-        // console.log(emailError);    
+        setEmailErrorMSG(true);  
       };
       setIsShow(true);
   }
+
   if (email.trim() !== '' && emailValid.test(email)) {
     onHideModal();
-  }
-  };
+  }};
 
   const emailInput = () => {
     if (email.trim() === "") {
@@ -54,10 +52,7 @@ const Modal = ({onHideModal}) => {
         console.log(emailError);    
       };
       setIsShow(true);
-  }
-  }
-
-    
+  }}
 
   const onKeyDown = (e) => {
     if (e.key === "Escape") {
@@ -81,16 +76,23 @@ const Modal = ({onHideModal}) => {
           if(document.activeElement === lastElement) {
             firstElement.focus();
             e.preventDefault();
-            };
-          };
-         };
-    };
+            }
+          }
+      }};
 
     const openNewModal = () => {
-      setShowModal(!showModal)
-    }
+      setIsOpenModal(true)
+    };
+
+    // const hideSecondModal = useRef(null);
+    const onHideSecondModal = () => { //Modal open/close
+        if (isOpenModal) {
+            setIsOpenModal(false);
+            // hideSecondModal.current.focus();
+        }};
   
 return (
+
     <React.Fragment>
       <div className="modal-wrapper" />
         <div ref={modalElement} role='dialog' aria-label='Additional Personal Information' aria-modal="true" className="modal-container" onKeyDown={(e) => onKeyDown(e)}>
@@ -112,16 +114,17 @@ return (
             <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field.</span>
             <span hidden={emailErrorMSG} role='alert' style={{ color: 'red' }}>Please enter valid Email.</span>
           </div>
+
           <div>
             <button onClick={onSubmit}>Submit</button>
             <button onClick={openNewModal}>Data</button>
           </div>
 
-          <div hidden={showModal}>
-            <ModalInModal />
+          <div hidden={!isOpenModal}>
+            <ModalInModal onHideSecondModal={onHideSecondModal}/>
           </div>
         </div>
     </React.Fragment>
-  );
+  )
 };
 export default Modal;
