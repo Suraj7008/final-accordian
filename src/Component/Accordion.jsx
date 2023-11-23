@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Form from './Form';
 import Modal from './Modal';
 import './AccordionStyle.css'
+import { ModalInModal } from './ModalInModal';
 
 const MyAccordion = () => {
     const [showFirst, setShowFirst] = useState(false); // First accordion show/hide 
@@ -11,6 +12,7 @@ const MyAccordion = () => {
     const [enable, setEnable] = useState(false); // show/hide condition for 2nd accordion
     const [newEnable, setNewEnable] = useState(false);  // show/hide condition for 3rd accordion
     const [isOpen, setIsOpen] = useState(false); // show/hide modal
+    const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
 
     const handleClick = (index) => {
         // Accordian expand/collase hide/show
@@ -49,6 +51,10 @@ const MyAccordion = () => {
         setIsOpen(true);
     };
 
+    const onClickOpenSeconModal = () => {   //Second modal open on clicking data nutton in modal component
+        setIsOpenSecondModal(true)
+    }
+
     const onClickReset = () => {    // Reset entire content on clicking reset button
         setShowThird(false);
         setNewEnable(false);
@@ -62,6 +68,10 @@ const MyAccordion = () => {
         if (isOpen) {
             setIsOpen(false);
             hideModal.current.focus();
+        }
+        if(isOpenSecondModal) {
+            setIsOpenSecondModal(false);
+            setIsOpen(true);
         }
     };
 
@@ -112,7 +122,11 @@ const MyAccordion = () => {
                         <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
                     </ul>
                 <div hidden={!isOpen}>
-                    <Modal onHideModal={onHideModal} />
+                    <Modal onClickOpenSeconModal={onClickOpenSeconModal} onHideModal={onHideModal} />
+                </div>
+
+                <div hidden={!isOpenSecondModal}>
+                    <ModalInModal onHideModal={onHideModal} />
                 </div>
             </div>
 

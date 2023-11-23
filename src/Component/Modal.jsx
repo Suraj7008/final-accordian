@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState }  from 'react';
 // import "./Modal";
-import { ModalInModal } from './ModalInModal';
+// import { ModalInModal } from './ModalInModal';
 import './Modal.css'
 
-const Modal = ({onHideModal}) => {
+const Modal = ({onHideModal, onClickOpenSeconModal}) => {
   const modalElement = useRef(null);
   const emailError = useRef(null);
   const [email, setEmail] = useState('');
@@ -26,19 +26,21 @@ const Modal = ({onHideModal}) => {
   const onSubmit = () => {
     if (email.trim() === '') {
         setIsShow(false);
-        emailError.current.focus();  //Error focus
-    } else {
+      } else {
       if (!emailValid.test(email)) {
         setEmailErrorMSG(false);
-      } else {
+      } 
+      else {
         setEmailErrorMSG(true);  
-      };
-      setIsShow(true);
-  }
-
-  if (email.trim() !== '' && emailValid.test(email)) {
-    onHideModal();
-  }};
+        setIsShow(true);
+        onHideModal();  
+      }
+    }
+    
+  //   if (email.trim() !== '' && emailValid.test(email)) {
+  //   emailError.current.focus();  //Error focus
+  // }
+};
 
   const emailInput = () => {
     if (email.trim() === "") {
@@ -82,9 +84,9 @@ const Modal = ({onHideModal}) => {
           // console.log(allElement);
       }};
 
-    const openNewModal = () => {
-      setIsOpenModal(true)
-    };
+    // const openNewModal = () => {
+    //   setIsOpenModal(true)
+    // };
 
     const hideSecondModal = useRef(null);
     const onHideSecondModal = () => { //Modal open/close
@@ -120,12 +122,12 @@ return (
 
           <div id='newbuttons'>
             <button onClick={onSubmit}>Submit</button>
-            <button onClick={openNewModal} ref={hideSecondModal}>Data</button>
+            <button onClick={onClickOpenSeconModal}>Data</button>
           </div>
 
-          <div hidden={!isOpenModal}>
-            <ModalInModal onHideSecondModal={onHideSecondModal}/>
-          </div>
+          {/* <div hidden={!isOpenModal}> */}
+            {/* <ModalInModal onHideSecondModal={onHideSecondModal}/> */}
+          {/* </div> */}
         </div>
     </React.Fragment>
   )
