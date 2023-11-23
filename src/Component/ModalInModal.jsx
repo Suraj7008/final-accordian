@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
+import './ModalInModal.css'
 
 export const ModalInModal = ({onHideSecondModal}) => {
-
+  // const secondModalElement = useRef(null)
   const [checked, setChecked] = useState(false);
+  const [checkError, setCheckError] = useState(true);
+  const [checkedValue, setCheckedValue] = useState('')
 
   const modalInModalFocus = useRef(null)
 
@@ -12,19 +15,57 @@ export const ModalInModal = ({onHideSecondModal}) => {
     console.log(secondModalElement)
   }, [onHideSecondModal]);
 
+  const handleInputChange = (e) => {
+    setCheckedValue(e.target.value);
+    setChecked(!checked);
+    setCheckError(true);
+  };
+
   const onSubmit = () => {
     if(checked === true){
       onHideSecondModal();
-    }};
+    } 
+    if(checked !== true) {
+      setCheckError(false)
+    }
+  };
+
+  const onKeyDownSecondModal = (e) => {
+    if (e.key === "Escape") {
+      // onHideSecondModal()
+    };
+    handleModalNavigation(e);
+  };
+
+  const handleModalNavigation = (e) => {
+    const secondModalElement = modalInModalFocus.current.querySelectorAll('input, button');
+    const firstElement = secondModalElement[0];
+    const lastElement = secondModalElement[secondModalElement.length - 1];
+  
+      if(e.key === "Tab") {
+           if(e.shiftKey) {
+              if(document.activeElement === firstElement){
+              lastElement.focus();
+              e.preventDefault();
+          };
+        } else  {
+            if(document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+              }
+            }
+        }};
+
 
   return (
     <>
     <div className="modal-wrapper" />
-    <div ref = {modalInModalFocus} className="modal-container" role='dialog' aria-modal="true">
-      <input aria-labelledby='verify' onChange={() => setChecked(!checked)} type='checkBox' aria-checked={checked} aria-required="true" required/>
+    <div id='modalin-modal-input' ref = {modalInModalFocus} className="modal-in-modal-container" role='dialog' aria-modal="true" onKeyDown={(e) => onKeyDownSecondModal(e)}>
+      <input value={checkedValue} onChange={handleInputChange} id='checkBox' aria-labelledby='verify'  type='checkBox' aria-checked={checked} aria-required="true" required/>
         <p id='verify'>
           Please verify that above information is corect by checking the check box.
         </p>
+        <span hidden={checkError}>Check above check box to submit!</span>
       <button onClick={onSubmit}>Submit</button>
     </div>
     </>

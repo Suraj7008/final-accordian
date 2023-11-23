@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Form from './Form';
 import Modal from './Modal';
-// import './Style/Accordionstyle.css';
+import './AccordionStyle.css'
 
 const MyAccordion = () => {
     const [showFirst, setShowFirst] = useState(false); // First accordion show/hide 
@@ -101,7 +101,7 @@ const MyAccordion = () => {
                 </div>
             </div>
 
-            <div>
+            <div className='main-content'>
                 <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button>{/* Second accordion */}
                 {/* Additional Information */}
                 <h2 hidden={!showSecond}>Additional Details</h2>
@@ -116,7 +116,7 @@ const MyAccordion = () => {
                 </div>
             </div>
 
-            <div>
+            <div className='main-content'>
                 <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>{/* Third accordion */}
                 {/* Final Step*/}
                 <h3 hidden={!showThird}>Congrats!</h3>

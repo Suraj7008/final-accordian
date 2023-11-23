@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -15,39 +16,14 @@ code {
 * {
   margin: 0;
   padding: 0;
+  font-size: large;
   box-sizing: border-box;
+}
+
+*:focus {
+  box-shadow: 0 0 0 3px rgb(0, 0, 0);   
 }
 
 .container {
   margin: 5rem;
 }
-
-.modal-wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  background-color: rgb(189, 189, 189, 0.9);
-
-}
-.modal-container {
-  position: fixed;
-}
-
-/* .accordianButton  {
-  background-color: #d7d6d6;
-  cursor: pointer;
-  padding: 18px;
-  width: 50%;
-  text-align: left;
-}
-
-#root > div > div:nth-child(1) > div {
-  background-color: #b6b6b6;
-  width: 500px;
-  height: 150px;
-  text-align: center;
-  position: relative;
-  
-} */

@@ -1,0 +1,27 @@
+
+  .modal-in-modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 250px;
+    padding: 40px;
+    background-color: #fff;
+    border: 5px solid #ccc;
+  }
+
+  #modalin-modal-input button {
+    background-color: #6a6d6b;
+    color: white;
+    padding: 10px;
+    margin-right: 40px;
+    margin-left: 50px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  #modalin-modal-input input[type="checkbox"] {
+    transform: scale(1.6); 
+    margin: auto;
+  }

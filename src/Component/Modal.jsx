@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState }  from 'react';
-import "./Modal";
+// import "./Modal";
 import { ModalInModal } from './ModalInModal';
+import './Modal.css'
 
 const Modal = ({onHideModal}) => {
   const modalElement = useRef(null);
@@ -55,7 +56,7 @@ const Modal = ({onHideModal}) => {
   }}
 
   const onKeyDown = (e) => {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       onHideModal();
     };
     handleModalNavigation(e);
@@ -64,7 +65,7 @@ const Modal = ({onHideModal}) => {
   const handleModalNavigation = (e) => {
   const allElement = modalElement.current.querySelectorAll('input, button');
   const firstElement = allElement[0];
-  const lastElement = allElement[allElement.length - 1];
+  const lastElement = allElement[3];
 
     if(e.key === "Tab") {
          if(e.shiftKey) {
@@ -78,17 +79,18 @@ const Modal = ({onHideModal}) => {
             e.preventDefault();
             }
           }
+          // console.log(allElement);
       }};
 
     const openNewModal = () => {
       setIsOpenModal(true)
     };
 
-    // const hideSecondModal = useRef(null);
+    const hideSecondModal = useRef(null);
     const onHideSecondModal = () => { //Modal open/close
         if (isOpenModal) {
             setIsOpenModal(false);
-            // hideSecondModal.current.focus();
+            hideSecondModal.current.focus();
         }};
   
 return (
@@ -97,11 +99,12 @@ return (
       <div className="modal-wrapper" />
         <div ref={modalElement} role='dialog' aria-label='Additional Personal Information' aria-modal="true" className="modal-container" onKeyDown={(e) => onKeyDown(e)}>
 
-          <button onClick={() => onHideModal()} aria-label='Close'>X</button>
+          <button className='closeButton' onClick={() => onHideModal()} aria-label='Close'>X</button>
 
           <div id='validation'>
             <label id='email'>Email id: </label>
             <input
+                        type='input'
                         ref={emailError}
                         value={email}
                         onChange={handleInputChange}
@@ -115,9 +118,9 @@ return (
             <span hidden={emailErrorMSG} role='alert' style={{ color: 'red' }}>Please enter valid Email.</span>
           </div>
 
-          <div>
+          <div id='newbuttons'>
             <button onClick={onSubmit}>Submit</button>
-            <button onClick={openNewModal}>Data</button>
+            <button onClick={openNewModal} ref={hideSecondModal}>Data</button>
           </div>
 
           <div hidden={!isOpenModal}>
