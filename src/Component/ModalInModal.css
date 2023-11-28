@@ -1,3 +1,5 @@
+/* Modal in Modal */
+
 .modal-in-modal-wrapper{
   position: fixed;
   top: 0;
@@ -6,6 +8,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
+
   .modal-in-modal-container {
     position: fixed;
     top: 50%;

@@ -2,17 +2,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import './ModalInModal.css'
 
 export const ModalInModal = ({onHideModal}) => {
-  const secondModalElement = useRef(null)
+  const secondModalElement = useRef(null);
   const [checked, setChecked] = useState(false);
   const [checkError, setCheckError] = useState(true);
-  const [checkedValue, setCheckedValue] = useState('')
+  const [checkedValue, setCheckedValue] = useState('');
 
-  const modalInModalFocus = useRef(null)
+  const modalInModalFocus = useRef(null);
 
   useEffect(() => {
     const secondModalElement = modalInModalFocus.current.querySelectorAll('input, button');
     secondModalElement[0].focus();
-    // console.log(secondModalElement[0])
   });
 
   const handleInputChange = (e) => {
@@ -20,12 +19,11 @@ export const ModalInModal = ({onHideModal}) => {
     setChecked(!checked);
     setCheckError(true);
   };
-// console.log("yes its open")
+
   const onSubmit = () => {
     
     if(checked === true){
-      onHideModal()
-      // onHideSecondModal();
+      onHideModal();
     } 
     if(checked !== true) {
       setCheckError(false)
@@ -67,7 +65,7 @@ export const ModalInModal = ({onHideModal}) => {
         <p id='verify'>
           Please verify that above information is corect by checking the check box.
         </p>
-        <span hidden={checkError}>Check above check box to submit!</span>
+        <span hidden={checkError} role='alert' style={{ color: 'red' }}>Check above check box to submit!</span>
       <button onClick={onSubmit}>Submit</button>
     </div>
     </>

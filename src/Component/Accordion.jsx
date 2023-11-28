@@ -56,15 +56,11 @@ const MyAccordion = () => {
     }
 
     const onClickReset = () => {    // Reset entire content on clicking reset button
-        setShowThird(false);
-        setNewEnable(false);
-        setShowSecond(false);
-        setEnable(false);
-        setShowFirst(false);
+        window.location.reload();
     };
 
     const hideModal = useRef(null);
-    const onHideModal = () => { //Modal open/close
+    const onHideModal = () => { //  Modal open/close
         if (isOpen) {
             setIsOpen(false);
             hideModal.current.focus();
@@ -75,14 +71,14 @@ const MyAccordion = () => {
         }
     };
 
-    const accordionFocus = useRef(null);    //First accordion close and focus shift to second accordion
+    const accordionFocus = useRef(null);    //  First accordion close and focus shift to second accordion
     useEffect(() => {
         if (showSecond) {
             accordionFocus.current.focus();
         };
     },[showSecond]);
     
-    const thirdAccordionFocus = useRef(null);   //Second accordion close and focus shift to third accordion
+    const thirdAccordionFocus = useRef(null);   //  Second accordion close and focus shift to third accordion
     useEffect(() => {
         if (showThird) {
             thirdAccordionFocus.current.focus();
@@ -99,7 +95,7 @@ const MyAccordion = () => {
     return (
         <React.Fragment>
             <div>
-                <button className='accordianButton' ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button> {/* First accordion */}
+                <button className='accordianButton' ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button>   {/* First accordion */}
                 {/* User Information content */}
                 <div className='main-content'>
 
@@ -112,13 +108,13 @@ const MyAccordion = () => {
             </div>
 
             <div className='main-content'>
-                <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button>{/* Second accordion */}
+                <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button> {/* Second accordion */}
                 {/* Additional Information */}
                 <h2 hidden={!showSecond}>Additional Details</h2>
                 <p hidden={!showSecond}>Click on submit after filling additional data!</p>
  
-                    <ul>
-                        <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Data</button>
+                    <ul id='newbuttons'>
+                        <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Add Email</button>
                         <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
                     </ul>
                 <div hidden={!isOpen}>
@@ -131,11 +127,13 @@ const MyAccordion = () => {
             </div>
 
             <div className='main-content'>
-                <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>{/* Third accordion */}
+                <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>   {/* Third accordion */}
                 {/* Final Step*/}
                 <h3 hidden={!showThird}>Congrats!</h3>
                 <p hidden={!showThird}>You are done now!</p>
+                <div id='newbuttons'>
                 <button hidden={!showThird} onClick={onClickReset}>Reset</button>
+                </div>
             </div>
         </React.Fragment>
     );

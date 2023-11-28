@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import './Form.css'
 
 const Form = ({onClickSubmit, index}) => {
 
@@ -65,7 +66,7 @@ const Form = ({onClickSubmit, index}) => {
   };
 
   return (
-    <form>
+    <form id='formField'>
 
       <div>
         <label id='fname'>First Name: </label>
@@ -78,7 +79,9 @@ const Form = ({onClickSubmit, index}) => {
         <input ref={LastNameInput} value={lastName} onChange={handleLastNameChange} onBlur={lastError} autoComplete='family-name' type='text' aria-labelledby='lname' name='last_name' placeholder='Enter your last name' aria-required = "true" required/>
         <span role='alert' hidden={!showlastName} style={{ color: 'red' }} >Please fill last name field</span>  {/* Error Message */}
       </div>
+      <div id='newbuttons'>
         <button type='submit' onClick={onSubmit}>Submit</button>
+      </div>
 
     </form>
   );
