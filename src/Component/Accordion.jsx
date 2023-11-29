@@ -13,6 +13,7 @@ const MyAccordion = () => {
     const [newEnable, setNewEnable] = useState(false);  // show/hide condition for 3rd accordion
     const [isOpen, setIsOpen] = useState(false); // show/hide modal
     const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
+    const [checkSeconModal, setCheckSecondModal] = useState(false);
 
     const handleClick = (index) => {
         // Accordian expand/collase hide/show
@@ -61,16 +62,18 @@ const MyAccordion = () => {
 
     const hideModal = useRef(null);
     const onHideModal = () => { //  Modal open/close
-        if (isOpen) {
+        if (checkSeconModal === true) {
             setIsOpen(false);
             hideModal.current.focus();
         }
         if(isOpenSecondModal) {
             setIsOpenSecondModal(false);
             setIsOpen(true);
+            setCheckSecondModal(true);
         }
+    
     };
-
+// console.log(checkSeconModal)
     const accordionFocus = useRef(null);    //  First accordion close and focus shift to second accordion
     useEffect(() => {
         if (showSecond) {
@@ -118,7 +121,7 @@ const MyAccordion = () => {
                         <button hidden={!showSecond} onClick={() => onClickSubmit(2)}>Submit</button>
                     </ul>
                 <div hidden={!isOpen}>
-                    <Modal onClickOpenSeconModal={onClickOpenSeconModal} onHideModal={onHideModal} />
+                    <Modal checkSeconModal={checkSeconModal} onClickOpenSeconModal={onClickOpenSeconModal} onHideModal={onHideModal} />
                 </div>
 
                 <div hidden={!isOpenSecondModal}>

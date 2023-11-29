@@ -21,7 +21,6 @@ export const ModalInModal = ({onHideModal}) => {
   };
 
   const onSubmit = () => {
-    
     if(checked === true){
       onHideModal();
     } 
@@ -32,7 +31,12 @@ export const ModalInModal = ({onHideModal}) => {
 
   const onKeyDownSecondModal = (e) => {
     if (e.key === "Escape") {
-      onHideModal()
+      if(checked === true){
+        onHideModal();
+      } 
+      if(checked !== true) {
+        setCheckError(false)
+      }
     };
     handleModalNavigation(e);
   };

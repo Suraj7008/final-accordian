@@ -3,12 +3,13 @@ import React, { useEffect, useRef, useState }  from 'react';
 // import { ModalInModal } from './ModalInModal';
 import './Modal.css'
 
-const Modal = ({onHideModal, onClickOpenSeconModal}) => {
+const Modal = ({onHideModal, onClickOpenSeconModal, checkSeconModal}) => {
 const modalElement = useRef(null);
   const emailError = useRef(null);
   const [email, setEmail] = useState('');
   const [emailErrorMSG, setEmailErrorMSG] =useState(true);
   const [isShow, setIsShow] = useState(true); // Show error messege
+  const [verifyMSG, setVerifyMSG] = useState(true);
  
   //email validation
   const emailValid= /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -16,17 +17,22 @@ const modalElement = useRef(null);
     if (email.trim() === '') {
         setIsShow(false);
         emailError.current.focus();  //Error focus
- 
-    } else {
-      if (!emailValid.test(email)) {
-        setEmailErrorMSG(false);
       } else {
-        setEmailErrorMSG(true);
-    };
-    setIsShow(true);
-    }
-    if (email.trim() !== '' && emailValid.test(email)) {
+        if (!emailValid.test(email)) {
+          setEmailErrorMSG(false);
+        } else {
+          setEmailErrorMSG(true);
+        };
+        setIsShow(true);
+      }
+      if (email.trim() !== '' && emailValid.test(email)) {
         onHideModal();
+        setVerifyMSG(true)
+      }
+      if(checkSeconModal === false){
+        console.log(checkSeconModal)
+        setVerifyMSG(false)
+        
         }
     };
  
@@ -43,6 +49,27 @@ const modalElement = useRef(null);
       };
       setIsShow(true);
     }
+    }
+
+    const checkEmailInput = () => {
+      if (email.trim() === '') {
+        setIsShow(false);
+        emailError.current.focus();  //Error focus
+ 
+    } else {
+      if (!emailValid.test(email)) {
+        setEmailErrorMSG(false);
+      } else {
+        setEmailErrorMSG(true);
+    };
+    setIsShow(true);
+    }
+    
+      if (email.trim() !== '' && emailValid.test(email)) {
+       
+        onClickOpenSeconModal();
+        }
+      
     }
  
    
@@ -97,12 +124,15 @@ return (
             <input className='mailinput' value={email} onChange={handleInputChange} onBlur={emailInput} autoComplete="off" aria-labelledby="email" placeholder="Enter your email id" ref={emailError} required />
            
           </div>
-            <span hidden={isShow} role='alert' style={{ color: 'red' }}>Please fill email field.</span>
-           
-            <span hidden={emailErrorMSG} role='alert' style={{ color: 'red' }}>Please enter valid Email.</span>
           <div id='newbuttons'>
-            <button onClick={onClickOpenSeconModal}>Verify</button>
+            <button onClick={checkEmailInput}>Verify</button>
             <button type='submit' onClick={onSubmit}>Submit</button>
+          </div>
+          <div id='alert'>
+
+            <span hidden={isShow} role='alert'>Please fill email field.</span>
+            <span hidden={emailErrorMSG} role='alert'>Please enter valid Email.</span>
+            <span hidden={verifyMSG} role='alert'>Please verify above information</span>
           </div>
         </div>
     </>
