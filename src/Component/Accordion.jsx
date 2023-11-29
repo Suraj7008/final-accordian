@@ -14,6 +14,7 @@ const MyAccordion = () => {
     const [isOpen, setIsOpen] = useState(false); // show/hide modal
     const [isOpenSecondModal, setIsOpenSecondModal] = useState(false);
     const [checkSeconModal, setCheckSecondModal] = useState(false);
+    const [emailValidation, setEmailValidation] = useState(true);
 
     const handleClick = (index) => {
         // Accordian expand/collase hide/show
@@ -45,6 +46,10 @@ const MyAccordion = () => {
                 setEnable(true);
                 setShowThird(true);
                 setShowSecond(false);
+                setEmailValidation(true);
+        }
+        if (index === 2 && !checkSeconModal === true) {
+            setEmailValidation(false);
         }
     };
 
@@ -97,10 +102,12 @@ const MyAccordion = () => {
 
     return (
         <React.Fragment>
-            <div>
-                <button className='accordianButton' ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information</button>   {/* First accordion */}
+            <div className='main-content'>
+                <button className='accordianButton' ref={reset} onClick={() => handleClick(0)} aria-expanded={showFirst ? 'true' : 'false'}>User Information
+                <span class="accordion-icon"></span>
+                </button>   {/* First accordion */}
                 {/* User Information content */}
-                <div className='main-content'>
+                <div>
 
                 <h2 hidden={!showFirst}>Personal Details</h2>
 
@@ -111,10 +118,13 @@ const MyAccordion = () => {
             </div>
 
             <div className='main-content'>
-                <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information</button> {/* Second accordion */}
+                <button className='accordianButton' onClick={() => handleClick(1)} aria-expanded={showSecond ? 'true' : 'false'} disabled={!showSecond && !enable} ref={accordionFocus}>Additional Information
+                <span class="accordion-icon"></span>
+                </button> {/* Second accordion */}
                 {/* Additional Information */}
                 <h2 hidden={!showSecond}>Additional Details</h2>
                 <p hidden={!showSecond}>Click on submit after filling additional data!</p>
+                <span hidden={emailValidation} role='alert' style={{ color: 'red' }}>Please add Email!</span>
  
                     <ul id='newbuttons'>
                         <button hidden={!showSecond} ref={hideModal} onClick={onClickOpenModal}>Add Email</button>
@@ -130,7 +140,9 @@ const MyAccordion = () => {
             </div>
 
             <div className='main-content'>
-                <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step</button>   {/* Third accordion */}
+                <button className='accordianButton' onClick={() => handleClick(2)} aria-expanded={showThird ? 'true' : 'false'} disabled={!showThird && !newEnable} ref={thirdAccordionFocus}>Final Step
+                <span class="accordion-icon"></span>
+                </button>   {/* Third accordion */}
                 {/* Final Step*/}
                 <h3 hidden={!showThird}>Congrats!</h3>
                 <p hidden={!showThird}>You are done now!</p>

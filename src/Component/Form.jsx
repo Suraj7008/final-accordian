@@ -71,14 +71,18 @@ const Form = ({onClickSubmit, index}) => {
       <div>
         <label id='fname'>First Name: </label>
         <input ref={firstNameInput} value={firstName} onChange={handleFirstNameChange} onBlur={firstError} autoComplete='given-name' type='text' aria-labelledby='fname' name='first_name' placeholder='Enter your first name' aria-required = "true" required/>
-        <span role='alert' hidden={!showFirstName} style={{ color: 'red' }}>Please fill first name field</span>  {/* Error Message */}
       </div>
+
+        <span style={{ color: 'red' }} role='alert' hidden={!showFirstName}>Please fill first name field</span>  {/* Error Message */}
+
 
       <div>
         <label id='lname'>Last Name: </label>
         <input ref={LastNameInput} value={lastName} onChange={handleLastNameChange} onBlur={lastError} autoComplete='family-name' type='text' aria-labelledby='lname' name='last_name' placeholder='Enter your last name' aria-required = "true" required/>
-        <span role='alert' hidden={!showlastName} style={{ color: 'red' }} >Please fill last name field</span>  {/* Error Message */}
       </div>
+
+        <span style={{ color: 'red' }} role='alert' hidden={!showlastName}>Please fill last name field</span>  {/* Error Message */}
+
       <div id='newbuttons'>
         <button type='submit' onClick={onSubmit}>Submit</button>
       </div>
