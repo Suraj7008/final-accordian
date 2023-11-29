@@ -27,6 +27,7 @@ const MyAccordion = () => {
             setShowSecond(!showSecond);
             setEnable(true);
             setExpanded(!expanded);
+            setEmailValidation(true)
         }
 
         if (index === 2) {  // Third accordion
@@ -47,9 +48,12 @@ const MyAccordion = () => {
                 setShowThird(true);
                 setShowSecond(false);
                 setEmailValidation(true);
+                console.log("here")
+
         }
-        if (index === 2 && !checkSeconModal === true) {
+        if (index === 2 && checkSeconModal !== true) {
             setEmailValidation(false);
+            console.log("ther")
         }
     };
 
