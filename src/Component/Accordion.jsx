@@ -41,10 +41,10 @@ const MyAccordion = () => {
             setShowFirst(false);
         }
 
-        if (index === 2) {  // Third accordion
-            setEnable(true);
-            setShowThird(true);
-            setShowSecond(false);
+        if (index === 2 && checkSeconModal === true) {  // Third accordion
+                setEnable(true);
+                setShowThird(true);
+                setShowSecond(false);
         }
     };
 

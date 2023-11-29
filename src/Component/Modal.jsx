@@ -18,6 +18,7 @@ const modalElement = useRef(null);
         setIsShow(false);
         emailError.current.focus();  //Error focus
       } else {
+        
         if (!emailValid.test(email)) {
           setEmailErrorMSG(false);
         } else {
@@ -25,14 +26,15 @@ const modalElement = useRef(null);
         };
         setIsShow(true);
       }
+
+
       if (email.trim() !== '' && emailValid.test(email)) {
         onHideModal();
         setVerifyMSG(true)
       }
+
       if(checkSeconModal === false){
-        console.log(checkSeconModal)
         setVerifyMSG(false)
-        
         }
     };
  
@@ -66,17 +68,35 @@ const modalElement = useRef(null);
     }
     
       if (email.trim() !== '' && emailValid.test(email)) {
-       
         onClickOpenSeconModal();
-        }
-      
+        } 
     }
  
-   
 // Esc to close modal
     const onKeyDown = (e) => {
     if (e.key === "Escape") {
-      onHideModal();
+      if (email.trim() === '') {
+        setIsShow(false);
+        emailError.current.focus();  //Error focus
+      } else {
+        
+        if (!emailValid.test(email)) {
+          setEmailErrorMSG(false);
+        } else {
+          setEmailErrorMSG(true);
+        };
+        setIsShow(true);
+      }
+
+      if (email.trim() !== '' && emailValid.test(email)) {
+        onHideModal();
+        setVerifyMSG(true)
+      }
+
+      if(checkSeconModal === false){
+        setVerifyMSG(false)
+        
+        }
  
     };
     handleModalNavigation(e);
